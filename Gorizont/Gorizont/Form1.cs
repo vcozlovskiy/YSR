@@ -1,16 +1,10 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
-
-
 namespace Gorizont
 {
     public partial class Form1 : Form
     {
-        public float _GravitationalAcceleration = 9.81f;
-        public float _Mass = 1;
-        public double _MediumResistanceCoefficient = 0.1f;
+        public float GRAVITATIONAL_ACCELERATION = 9.81f;
+        public float MASS = 1;
+        public double MEDIUM_RESISTANCE_COEFFICIENT = 0.1f;
         public float CoordinateX=0;
         public float CoordinateY =0;
         public float VelocityX;
@@ -20,9 +14,9 @@ namespace Gorizont
         private void Timer2_Tick(object sender, EventArgs e)
         {
             Time = Time + 0.1f;
-            VelocityX = VelocityX - (float)(_MediumResistanceCoefficient * VelocityX * VelocityX / (2 * _Mass)) * 0.01f;
+            VelocityX = VelocityX - (float)(MEDIUM_RESISTANCE_COEFFICIENT * VelocityX * VelocityX / (2 * MASS)) * 0.01f;
             CoordinateX = CoordinateX + VelocityX * 0.1f;
-            VelocityY = VelocityY - _GravitationalAcceleration * 0.01f;
+            VelocityY = VelocityY - GRAVITATIONAL_ACCELERATION * 0.01f;
             CoordinateY = CoordinateY + VelocityY * 0.1f;
             axis1.PixDraw(CoordinateX, CoordinateY, Color.Blue, 1);
             if (CoordinateY < 0)
@@ -39,7 +33,7 @@ namespace Gorizont
         {
             Time = Time + 0.1f;
             CoordinateX = VelocityX * Time;
-            CoordinateY = VelocityY * Time - _GravitationalAcceleration * Time * Time / 20;
+            CoordinateY = VelocityY * Time - GRAVITATIONAL_ACCELERATION * Time * Time / 20;
             if (CoordinateY <= 0)
             {
                 timer1.Stop();
@@ -95,7 +89,6 @@ namespace Gorizont
                 timer1.Interval = 1;
                 timer1.Start();
             }
-
         }
     }
 }
